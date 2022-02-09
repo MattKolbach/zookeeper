@@ -1,26 +1,10 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
+const express = require('express');
+const { animals } = require('./data/animals');
+
 const PORT = process.env.PORT || 3001;
 const app = express();
-const { animals } = require("./data/animals.json");
-
-///// link to html files  /////
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/index.html"));
-});
-
-app.get("/animals", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/animals.html"));
-});
-
-app.get('/zookeepers', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
-  });
-//wildcard route (just in case)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/index.html"));
-});
 
 //middleware functions
 //parts incoming string or array data
@@ -28,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 //parse incoming JSON data
 app.use(express.json());
 // lets server get style.css and script.js
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 function filterByQuery(query, animalsArray) {
   let personalityTraitsArray = [];
@@ -90,6 +74,23 @@ function createNewAnimal(body, animalsArray) {
   //return finished code to post route for response
   return animal;
 }
+
+///// link to html files  /////
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+  });
+  
+  app.get("/animals", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/animals.html"));
+  });
+  
+  app.get('/zookeepers', (req, res) => {
+      res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+    });
+  //wildcard route (just in case)
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+  });
 
 /////  get routes  /////
 app.get("/api/animals", (req, res) => {
