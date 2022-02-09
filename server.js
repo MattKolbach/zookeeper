@@ -4,6 +4,9 @@ const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const { animals } = require('./data/animals.json');
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 
 //middleware functions
@@ -11,7 +14,8 @@ const { animals } = require('./data/animals.json');
 app.use(express.urlencoded({ extended: true }));
 //parse incoming JSON data
 app.use(express.json());
-
+// lets server get style.css and script.js
+app.use(express.static('public'));
 
 
 
