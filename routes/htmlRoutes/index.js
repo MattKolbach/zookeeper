@@ -1,6 +1,7 @@
 const path = require("path");
 const router = require("express").Router();
 
+
 ///// link to html files  /////
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../../public/index.html"));
@@ -13,6 +14,7 @@ router.get("/animals", (req, res) => {
 router.get("/zookeepers", (req, res) => {
   res.sendFile(path.join(__dirname, "../../public/zookeepers.html"));
 });
+
 //wildcard route (just in case)
 router.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../public/index.html"));
