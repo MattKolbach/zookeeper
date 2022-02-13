@@ -138,6 +138,15 @@
         "loving"
       ],
       "id": "13"
+    },
+    {
+      "name": "Goliath",
+      "species": "Box Tortoise",
+      "diet": "carnivore",
+      "personalityTraits": [
+        "hungry"
+      ],
+      "id": "14"
     }
   ]
 }
